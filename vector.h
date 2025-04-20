@@ -13,7 +13,7 @@ public:
   virtual const int *getData() const final;
   virtual void add(const int &);
   virtual void print() const final;
-  virtual ~Vector();
+  virtual ~Vector() { delete[] data; };
 };
 
 class BitVector : public Vector {

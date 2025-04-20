@@ -10,30 +10,26 @@ Vector::Vector(int size) {
   data = new int[size]{0};
 }
 
-Vector::~Vector() { delete[] data; }
-
 void Vector::setSize(const int &size) {
   if (size == this->size)
     return;
 
   int *newData = new int[size];
-  int newLastIndex = 0;
-  int minSize = min(size, this->size);
+  int copySize = min(size, this->size);
 
-  for (newLastIndex = 0; newLastIndex < minSize; newLastIndex++) {
-    newData[newLastIndex] = data[newLastIndex];
+  // Copy existing elements
+  for (int i = 0; i < copySize; i++) {
+    newData[i] = data[i];
   }
 
-  if (size > this->size) {
-    for (int i = newLastIndex; i < size; i++) {
-      newData[i] = 0;
-    }
+  // Initialize new elements to 0
+  for (int i = copySize; i < size; i++) {
+    newData[i] = 0;
   }
 
   delete[] data;
-  this->size = size;
-  lastIndex = newLastIndex;
   data = newData;
+  this->size = size;
 }
 
 void Vector::setAll(const int size, const int *newData) {
@@ -44,8 +40,16 @@ void Vector::setAll(const int size, const int *newData) {
 }
 
 void Vector::add(const int &el) {
-  if (lastIndex == this->size)
-    setSize(size + 1);
+  // If array is full, resize with a growth factor
+  if (lastIndex == size) {
+    int newSize = size * 2; // Double the size
+    if (newSize == 0)
+      newSize = 1; // Handle initial size 0
+
+    int oldSize = size;
+    setSize(newSize);
+    lastIndex = oldSize;
+  }
 
   data[lastIndex] = el;
   lastIndex++;
@@ -84,13 +88,9 @@ int Vector::getSize() const { return size; }
 BitVector::BitVector(int size) : Vector(size) {}
 
 void BitVector::validateBitNumber(const int &el) const {
-  string elStr = to_string(el);
-
-  for (char c : elStr) {
-    if (c != '0' && c != '1')
-      throw invalid_argument(
-          "Only numbers with 1s and 0s are allowed in BitVector");
-  }
+  if (el != 0 && el != 1)
+    throw invalid_argument(
+        "Only numbers with 1s and 0s are allowed in BitVector");
 }
 
 void BitVector::setAll(const int size, const int *newData) {
@@ -111,7 +111,7 @@ void BitVector::sumVect(const Vector &v) {
 
   int *summedData = new int[v.getSize()];
   for (int i = 0; i < getSize(); i++) {
-    summedData[i] = getData()[i] | v.getData()[i];
+    summedData[i] = getData()[i] || v.getData()[i];
   }
 
   setAll(getSize(), summedData);
@@ -124,7 +124,7 @@ void BitVector::prodVect(const Vector &v) {
 
   int *multipliedData = new int[v.getSize()];
   for (int i = 0; i < getSize(); i++) {
-    multipliedData[i] = getData()[i] & v.getData()[i];
+    multipliedData[i] = getData()[i] && v.getData()[i];
   }
 
   setAll(getSize(), multipliedData);
