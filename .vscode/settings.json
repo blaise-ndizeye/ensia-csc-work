@@ -48,5 +48,9 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "typeinfo": "cpp"
-  }
+  },
+  "editor.fontSize": 16,
+  "terminal.integrated.fontSize": 15,
+  "debug.console.fontSize": 15,
+  "scm.inputFontSize": 14
 }

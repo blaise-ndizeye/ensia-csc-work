@@ -5,8 +5,8 @@ class Vector {
 
 public:
   Vector(int size);
-  virtual void sumVect(const Vector &);
-  virtual void prodVect(const Vector &);
+  void sumVect(const Vector &);
+  void prodVect(const Vector &);
   virtual int getSize() const final;
   virtual void setSize(const int &) final;
   virtual void setAll(const int size, const int *newData);
@@ -22,8 +22,8 @@ class BitVector : public Vector {
 public:
   BitVector(int size);
   virtual void setAll(const int size, const int *newData) override;
-  virtual void sumVect(const Vector &) override;
-  virtual void prodVect(const Vector &) override;
+  void sumVect(const BitVector &);
+  void prodVect(const BitVector &);
   virtual void add(const int &) override;
   virtual ~BitVector() = default;
 };

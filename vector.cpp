@@ -40,7 +40,7 @@ void Vector::setAll(const int size, const int *newData) {
 }
 
 void Vector::add(const int &el) {
-  // If array is full, resize with a growth factor
+  // If array is full then resize it
   if (lastIndex == size) {
     int newSize = size * 2; // Double the size
     if (newSize == 0)
@@ -89,8 +89,7 @@ BitVector::BitVector(int size) : Vector(size) {}
 
 void BitVector::validateBitNumber(const int &el) const {
   if (el != 0 && el != 1)
-    throw invalid_argument(
-        "Only numbers with 1s and 0s are allowed in BitVector");
+    throw invalid_argument("Only 1s and 0s are allowed in a BitVector");
 }
 
 void BitVector::setAll(const int size, const int *newData) {
@@ -105,7 +104,7 @@ void BitVector::add(const int &el) {
   Vector::add(el);
 }
 
-void BitVector::sumVect(const Vector &v) {
+void BitVector::sumVect(const BitVector &v) {
   if (v.getSize() != getSize())
     throw invalid_argument("Only vectors of the same size can be added!");
 
@@ -118,7 +117,7 @@ void BitVector::sumVect(const Vector &v) {
   delete[] summedData;
 }
 
-void BitVector::prodVect(const Vector &v) {
+void BitVector::prodVect(const BitVector &v) {
   if (v.getSize() != getSize())
     throw invalid_argument("Only vectors of the same size can be multiplied!");
 

@@ -78,11 +78,13 @@ int main() {
 
   Vector *vectPtr1 = new Vector(1);
   vectPtr1->setAll(vector1.getSize(), vector1.getData());
+
   Vector *vectPtr2 = new Vector(1);
   vectPtr2->setAll(vector2.getSize(), vector2.getData());
 
   BitVector *bitVectPtr1 = new BitVector(1);
   bitVectPtr1->setAll(bitVector1.getSize(), bitVector1.getData());
+
   BitVector *bitVectPtr2 = new BitVector(1);
   bitVectPtr2->setAll(bitVector2.getSize(), bitVector2.getData());
 
@@ -119,11 +121,13 @@ int main() {
   bitVectPtr1->setAll(3, data3);
   bitVectPtr2->setAll(3, data4);
 
-  delete vectPtr1; // Clean up original objects
+  delete vectPtr1;
   delete vectPtr2;
 
-  vectPtr1 = new BitVector(3); // Create new BitVector objects
+  // Dynamic binding
+  vectPtr1 = new BitVector(3);
   vectPtr2 = new BitVector(3);
+
   vectPtr1->setAll(3, data3);
   vectPtr2->setAll(3, data4);
 
