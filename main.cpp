@@ -76,17 +76,11 @@ int main() {
 
   cout << separator("Pointers aiming to the same type objects");
 
-  Vector *vectPtr1 = new Vector(1);
-  vectPtr1->setAll(vector1.getSize(), vector1.getData());
+  Vector *vectPtr1 = &vector1;
+  Vector *vectPtr2 = &vector2;
 
-  Vector *vectPtr2 = new Vector(1);
-  vectPtr2->setAll(vector2.getSize(), vector2.getData());
-
-  BitVector *bitVectPtr1 = new BitVector(1);
-  bitVectPtr1->setAll(bitVector1.getSize(), bitVector1.getData());
-
-  BitVector *bitVectPtr2 = new BitVector(1);
-  bitVectPtr2->setAll(bitVector2.getSize(), bitVector2.getData());
+  BitVector *bitVectPtr1 = &bitVector1;
+  BitVector *bitVectPtr2 = &bitVector2;
 
   cout << "\nvectPtr1->vector1 and bitVectPtr1->bitVector1\n";
   cout << "\nvectPtr1 \n";
@@ -121,12 +115,9 @@ int main() {
   bitVectPtr1->setAll(3, data3);
   bitVectPtr2->setAll(3, data4);
 
-  delete vectPtr1;
-  delete vectPtr2;
-
   // Dynamic binding
-  vectPtr1 = new BitVector(3);
-  vectPtr2 = new BitVector(3);
+  vectPtr1 = dynamic_cast<BitVector *>(bitVectPtr1);
+  vectPtr2 = dynamic_cast<BitVector *>(bitVectPtr2);
 
   vectPtr1->setAll(3, data3);
   vectPtr2->setAll(3, data4);
@@ -163,11 +154,6 @@ int main() {
   vectPtr2->print();
 
   cout << "\n";
-
-  delete vectPtr1;
-  delete vectPtr2;
-  delete bitVectPtr1;
-  delete bitVectPtr2;
 
   return 0;
 }
