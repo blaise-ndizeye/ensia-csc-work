@@ -14,6 +14,6 @@ public:
   bool getGlutenFree() const;
   void setGlutenFree(const bool &);
   virtual void input() override;
-  virtual void display() override;
+  virtual void display() const override;
   virtual double calculatePrice() const override;
 };

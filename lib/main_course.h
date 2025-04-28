@@ -18,6 +18,6 @@ public:
   string getCookingStyle() const;
   void setCookingStyle(const string &);
   virtual void input() override;
-  virtual void display() override;
+  virtual void display() const override;
   virtual double calculatePrice() const override;
 };

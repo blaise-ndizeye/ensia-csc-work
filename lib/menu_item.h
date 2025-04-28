@@ -12,7 +12,7 @@ public:
   void setName(const string &);
   double getPrice() const;
   void setPrice(const double &);
-  virtual void input() = 0;
-  virtual void display() = 0;
+  virtual void input();
+  virtual void display() const;
   virtual double calculatePrice() const = 0;
 };
