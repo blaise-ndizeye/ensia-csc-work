@@ -9,9 +9,10 @@ class Appetizer : public MenuItem {
   bool vegeterian;
 
 public:
-  Appetizer(string name, double price, string description, bool vegeterian);
+  Appetizer(char size, string name, double price, string description,
+            bool vegeterian);
   char getSize() const;
-  void seSize(const char &);
+  void setSize(const char &);
   string getDescription() const;
   void setDescription(const string &);
   bool getVegeterian() const;

@@ -19,18 +19,20 @@ void Dessert::setGlutenFree(const bool &glutenFree) {
 }
 
 void Dessert::input() {
+  cout << "Input Dessert: \n";
   MenuItem::input();
-  cout << "- Flavor: ";
-  getline(cin, flavor);
   cout << "- Gluten Free (1 or 0): ";
   cin >> glutenFree;
+  cin.ignore();
+  cout << "- Flavor: ";
+  getline(cin, flavor);
 }
 
 void Dessert::display() const {
   MenuItem::display();
+  cout << "- Price: $" << calculatePrice() << "\n";
   cout << "- Flavor: " << getFlavor() << "\n";
   cout << "- Gluten Free: " << (getGlutenFree() ? "Yes" : "No") << "\n";
-  cout << "- Price: " << calculatePrice() << "\n";
 }
 
 double Dessert::calculatePrice() const { return MenuItem::getPrice(); }

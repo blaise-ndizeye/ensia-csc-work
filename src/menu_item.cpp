@@ -20,7 +20,7 @@ void MenuItem::setPrice(const double &price) {
 void MenuItem::input() {
   cout << "- Name: ";
   getline(cin, name);
-  cout << "- Price";
+  cout << "- Price: ";
   cin >> price;
 }
 

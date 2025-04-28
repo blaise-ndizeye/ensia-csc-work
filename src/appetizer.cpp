@@ -1,24 +1,25 @@
 #include "../lib/appetizer.h"
+#include <cctype>
 #include <iostream>
 using namespace std;
 
-Appetizer::Appetizer(string name, double price, string description,
+Appetizer::Appetizer(char size, string name, double price, string description,
                      bool vegeterian)
     : MenuItem(name, price) {
+  setSize(size);
   setDescription(description);
   setVegeterian(vegeterian);
 }
 
 char Appetizer::getSize() const { return size; }
 
-void Appetizer::seSize(const char &size) {
+void Appetizer::setSize(const char &size) {
   char modifiedSize = toupper(size);
 
-  if (modifiedSize != 'S' || modifiedSize != 'M' || modifiedSize != 'L') {
+  if (modifiedSize != 'S' && modifiedSize != 'M' && modifiedSize != 'L')
     throw invalid_argument("Invalid size. Size must be 'S', 'M' or 'L'!");
 
-    this->size = modifiedSize;
-  }
+  this->size = modifiedSize;
 }
 
 string Appetizer::getDescription() const { return description; }
@@ -34,20 +35,23 @@ void Appetizer::setVegeterian(const bool &vegetarian) {
 }
 
 void Appetizer::input() {
+  cout << "Input Appetizer: \n";
+  MenuItem::input();
   cout << "- Size (S, L, M): ";
   cin >> size;
   cout << "- Vegetarian (1 or 0): ";
   cin >> vegeterian;
+  cin.ignore();
   cout << "- Description: ";
   getline(cin, description);
 }
 
 void Appetizer::display() const {
   MenuItem::display();
-  cout << "Size: " << getSize() << "\n";
-  cout << "Vegeterian: " << (getVegeterian() ? "Yes" : "No") << "\n";
-  cout << "Description: " << getDescription() << "\n";
-  cout << "- Price: " << calculatePrice() << "\n";
+  cout << "- Size: " << getSize() << "\n";
+  cout << "- Vegeterian: " << (getVegeterian() ? "Yes" : "No") << "\n";
+  cout << "- Description: " << getDescription() << "\n";
+  cout << "- Price: $" << calculatePrice() << "\n";
 }
 
 double Appetizer::calculatePrice() const {

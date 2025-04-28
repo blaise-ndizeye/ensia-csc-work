@@ -8,6 +8,7 @@ class MenuItem {
 
 public:
   MenuItem(string name, double price);
+  virtual ~MenuItem() = default;
   string getName() const;
   void setName(const string &);
   double getPrice() const;

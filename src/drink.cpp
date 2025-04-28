@@ -27,7 +27,9 @@ void Drink::setTemperature(const string &temperature) {
 }
 
 void Drink::input() {
+  cout << "Input Drink: \n";
   MenuItem::input();
+  cin.ignore();
   cout << "- Type: ";
   getline(cin, type);
   cout << "- Serving size (ml): ";
@@ -37,12 +39,12 @@ void Drink::input() {
   getline(cin, temperature);
 }
 
-void Drink::display() {
+void Drink::display() const {
   MenuItem::display();
+  cout << "- Price: $" << calculatePrice() << "\n";
   cout << "- Type: " << getType() << "\n";
   cout << "- Serving size: " << getServingSize() << "ml\n";
   cout << "- Temperature: " << getTemperature() << "\n";
-  cout << "- Price: " << calculatePrice() << "\n";
 }
 
 double Drink::calculatePrice() const { return MenuItem::getPrice(); }
