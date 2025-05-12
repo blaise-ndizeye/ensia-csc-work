@@ -19,13 +19,10 @@ int main(int argc, char const *argv[]) {
 
     cout << num1 << " ÷ " << num2 << " = " << (static_cast<double>(num1) / num2)
          << "\n";
-  } catch (const MathException &e) {
-    cerr << e.what() << '\n';
-  }
 
-  separator();
+    separator();
+    cin.clear();
 
-  try {
     cout << "Enter a large number: ";
     cin >> num1;
 
@@ -33,13 +30,8 @@ int main(int argc, char const *argv[]) {
       throw OverFlowException();
 
     cout << "\n" << num1 << " is not that large 😒 \n";
-  } catch (const MathException &e) {
-    cerr << e.what() << '\n';
-  }
 
-  separator();
-
-  try {
+    separator();
     cin.clear();
 
     cout << "Enter the number to find it's square root: ";
