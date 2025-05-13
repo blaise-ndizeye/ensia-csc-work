@@ -4,6 +4,7 @@
 using namespace std;
 
 class MathException : public exception {
+protected:
   string message;
 
 public:
