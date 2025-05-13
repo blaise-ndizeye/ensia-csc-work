@@ -1,4 +1,5 @@
 #include "../lib/double_scripted_array.h"
+#include "../lib/exceptions.h"
 #include <iostream>
 using namespace std;
 
@@ -79,7 +80,7 @@ bool DoubleScriptedArray<T>::operator!=(
 template <class T>
 const T &DoubleScriptedArray<T>::operator()(int rowP, int columnP) const {
   if (rowP >= getRowSize() || columnP >= getColumnSize())
-    throw out_of_range("Positions out of bounds!");
+    throw ArrayOutOfRangeError(); //* Throw custom exception
 
   return ptr[rowP * columnSize + columnP];
 }
@@ -87,7 +88,7 @@ const T &DoubleScriptedArray<T>::operator()(int rowP, int columnP) const {
 template <class T>
 T &DoubleScriptedArray<T>::operator()(int rowP, int columnP) {
   if (rowP >= getRowSize() || columnP >= getColumnSize())
-    throw out_of_range("Positions out of bounds!");
+    throw ArrayOutOfRangeError(); //* Throw custom exception
 
   return ptr[rowP * columnSize + columnP];
 }
